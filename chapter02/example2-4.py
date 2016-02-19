@@ -1,6 +1,7 @@
 # TCP TimeStamp Client
 
 from socket import *
+from time import ctime
 
 HOST = 'localhost'
 PORT = 21567
@@ -14,10 +15,10 @@ while True:
     data = input('> ')
     if not data:
         break
-    tcpCliSock.send(data)
-    data = tcpCliSock.recv(BUFSIZ)
+    tcpCliSock.send(data.encode())
+    data = tcpCliSock.recv(BUFSIZ).decode()
     if not data:
         break
-    print(data.decode('utf-8'))
+    print(data)
 
 tcpCliSock.close()

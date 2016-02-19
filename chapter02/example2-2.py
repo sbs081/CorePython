@@ -18,11 +18,9 @@ while True:
     print('...connected from:', addr)
 
     while True:
-        data = tcpSerSock.recv(BUFSIZ)
+        data = tcpSerSock.recv(BUFSIZ).decode()
         if not data:
             break
-        tcpSerSock.send('[%s] %s' % (
-            bytes(ctime(), 'utf-8'), data))
-
+        tcpSerSock.send(('[%s]%s' % (ctime(), data)).encode())
     tcpSerSock.close()
 tcpSerSock.close()
