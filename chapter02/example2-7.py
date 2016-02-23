@@ -17,4 +17,5 @@ while True:
     if not data:
         break
     print(data)
+
 udpCliSock.close()
