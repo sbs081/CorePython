@@ -1,13 +1,16 @@
+# -*- coding: utf-8 -*-
+
 from twisted.internet import protocol, reactor
 
 HOST = 'localhost'
 PORT = 21567
 
+
 class TSClntProtocol(protocol.Protocol):
     def sendData(self):
         data = input('> ')
         if data:
-            print '...sending %s...' % data
+            print('...sending %s...') % data
             self.transport.write(data)
         else:
             self.transport.loseConnection()
@@ -16,8 +19,9 @@ class TSClntProtocol(protocol.Protocol):
         self.sendData()
 
     def dataReceived(self, data):
-        print data
+        print(data)
         self.sendData()
+
 
 class TSClntFactory(protocol.ClientFactory):
     protocol = TSClntProtocol
